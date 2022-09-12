@@ -1,5 +1,3 @@
-from datetime import date, datetime
-from typing import Set
 from django.db import models
 from projects.models import Project
 from django.conf import settings
