@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load markdownify %}
 
 {% block content %}
 <div>
     <h1>{{projectdetail.name}}</h1>
-    <p>{{projectdetail.description}}</p>
+    {{ projectdetail.description|markdownify }}
     <h2>Tasks</h2>
     <a href="{% url 'create_task' %}">Create a new task</a>
     {% if projectdetail.tasks.all|length > 0 %}
