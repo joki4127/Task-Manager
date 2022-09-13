@@ -1,4 +1,5 @@
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 
@@ -14,9 +15,18 @@ class TaskCreateview(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         item = form.save(commit=False)
-        item.user = self.request.user
+        item.assignee = self.request.user
         item.save()
         return redirect("show_project", pk=item.pk)
 
     def get_queryset(self):
-        return Task.objects.filter(members=self.request.user)
+        return Task.objects.filter(assignee=self.request.user)
+
+
+class TaskListview(LoginRequiredMixin, ListView):
+    model = Task
+    template_name = "tasks/list.html"
+    context_object_name = "tasklist"
+
+    def get_queryset(self):
+        return Task.objects.filter(assignee=self.request.user)

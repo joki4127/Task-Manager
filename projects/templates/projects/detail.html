@@ -20,12 +20,17 @@
     </thead>
     <tbody>
         {% for item in projectdetail.tasks.all %}
+
         <tr>
             <td>{{item.name}}</td>
             <td>{{item.assignee}}</td>
             <td>{{item.start_date}}</td>
             <td>{{item.due_date}}</td>
-            <td>{{item.is_completed}}</td>
+            {%if item.is_completed == True %}
+            <td>Done</td>
+            {% else %}
+            <td></td>
+            {% endif %}
         </tr>
         {% endfor %}
         {% else %}

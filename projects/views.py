@@ -34,7 +34,7 @@ class ProjectCreateview(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         item = form.save(commit=False)
-        item.user = self.request.user
+        item.self = self.request.user
         item.save()
         return redirect("show_project", pk=item.pk)
 
