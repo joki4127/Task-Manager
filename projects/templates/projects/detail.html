@@ -27,9 +27,9 @@
             <td>{{item.start_date}}</td>
             <td>{{item.due_date}}</td>
             {%if item.is_completed == True %}
-            <td>Done</td>
+            <td>Yes</td>
             {% else %}
-            <td></td>
+            <td>No</td>
             {% endif %}
         </tr>
         {% endfor %}
